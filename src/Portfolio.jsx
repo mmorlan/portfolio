@@ -220,6 +220,8 @@ export default function Portfolio() {
           <a href="/#work" className="cursor-pointer text-sm font-medium text-muted no-underline">Work</a>
           <a href="/#about" className="cursor-pointer text-sm font-medium text-muted no-underline">About</a>
           <a href={`mailto:${footer.email}`} className="cursor-pointer text-sm font-medium text-muted no-underline">Contact</a>
+          <a href={header.linkedin} target="_blank" rel="noopener noreferrer" className="cursor-pointer text-sm font-medium text-muted no-underline">LinkedIn</a>
+          <a href={header.resume} target="_blank" rel="noopener noreferrer" className="cursor-pointer text-sm font-medium text-muted no-underline">Resume</a>
         </nav>
 
         {/* Mobile nav */}
@@ -238,6 +240,8 @@ export default function Portfolio() {
               <a href="/#work" onClick={() => setMenuOpen(false)} className="px-5 py-2.5 text-sm font-medium text-muted no-underline transition-colors hover:bg-bg">Work</a>
               <a href="/#about" onClick={() => setMenuOpen(false)} className="px-5 py-2.5 text-sm font-medium text-muted no-underline transition-colors hover:bg-bg">About</a>
               <a href={`mailto:${footer.email}`} onClick={() => setMenuOpen(false)} className="px-5 py-2.5 text-sm font-medium text-muted no-underline transition-colors hover:bg-bg">Contact</a>
+              <a href={header.linkedin} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} className="px-5 py-2.5 text-sm font-medium text-muted no-underline transition-colors hover:bg-bg">LinkedIn</a>
+              <a href={header.resume} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} className="px-5 py-2.5 text-sm font-medium text-muted no-underline transition-colors hover:bg-bg">Resume</a>
             </nav>
           )}
         </div>
