@@ -193,12 +193,20 @@ export default function Portfolio() {
     function handleClick(e) {
       if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false);
     }
+    function handleKeyDown(e) {
+      if (e.key === "Escape") setMenuOpen(false);
+    }
     document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
   }, [menuOpen]);
 
   return (
     <div className="min-h-screen bg-bg font-sans leading-[1.65] text-primary">
+      <a href="#main-content" className="skip-link">Skip to main content</a>
 
       {/* HEADER */}
       <header className="sticky top-0 z-100 flex h-[68px] items-center justify-between border-b border-border bg-white px-6 md:px-10">
@@ -219,13 +227,14 @@ export default function Portfolio() {
           <span className="text-sm font-medium text-primary">{header.authorName}</span>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
+            aria-label="Navigation menu"
+            aria-expanded={menuOpen}
             className="cursor-pointer p-1"
           >
             <img src={burgerIcon} alt="" className="h-5 w-5" />
           </button>
           {menuOpen && (
-            <nav className="absolute right-0 top-full mt-2 flex min-w-[160px] flex-col rounded-lg border border-border bg-white py-2 shadow-lg">
+            <nav aria-label="Mobile navigation" className="absolute right-0 top-full mt-2 flex min-w-[160px] flex-col rounded-lg border border-border bg-white py-2 shadow-lg">
               <a href="/#work" onClick={() => setMenuOpen(false)} className="px-5 py-2.5 text-sm font-medium text-muted no-underline transition-colors hover:bg-bg">Work</a>
               <a href="/#about" onClick={() => setMenuOpen(false)} className="px-5 py-2.5 text-sm font-medium text-muted no-underline transition-colors hover:bg-bg">About</a>
               <a href={`mailto:${footer.email}`} onClick={() => setMenuOpen(false)} className="px-5 py-2.5 text-sm font-medium text-muted no-underline transition-colors hover:bg-bg">Contact</a>
@@ -235,10 +244,12 @@ export default function Portfolio() {
       </header>
 
       <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/work/:slug" element={<CaseStudyPage />} />
-      </Routes>
+      <main id="main-content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/work/:slug" element={<CaseStudyPage />} />
+        </Routes>
+      </main>
 
       {/* FOOTER */}
       <footer className="bg-primary py-7 px-6 text-center text-[0.85rem] text-border md:px-10">
