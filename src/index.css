@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1F3B2A;
+  --color-accent: #2E8B57;
+  --color-muted: #487A5C;
+  --color-badge: #2D7A52;
+  --color-border: #D8EDE0;
+  --color-bg: #F1FAF4;
+
+  --font-sans: "DM Sans", "Inter", system-ui, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+}
+
+
+.splide__slide {
+  display: flex;
+  align-items: center;
+}
