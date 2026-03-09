@@ -210,7 +210,7 @@ export default function Portfolio() {
 
       {/* HEADER */}
       <header className="sticky top-0 z-100 flex h-[68px] items-center justify-between border-b border-border bg-white px-6 md:px-10">
-        <Link to="/" className="font-serif text-sm italic font-normal -tracking-[0.02em] text-primary no-underline md:text-[1.3rem]">
+        <Link to="/" className="absolute left-1/2 -translate-x-1/2 font-serif text-lg italic font-normal -tracking-[0.02em] text-primary no-underline md:static md:translate-x-0 md:text-[1.3rem]">
           {header.siteName}
         </Link>
 
@@ -225,8 +225,7 @@ export default function Portfolio() {
         </nav>
 
         {/* Mobile nav */}
-        <div ref={menuRef} className="relative flex items-center gap-4 md:hidden">
-          <span className="text-sm font-medium text-primary">{header.authorName}</span>
+        <div ref={menuRef} className="relative ml-auto flex items-center md:hidden">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Navigation menu"
