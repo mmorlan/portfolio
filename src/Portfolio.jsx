@@ -16,7 +16,7 @@ import petrossianHover from "./assets/thumbnails/petrossian_hover.jpg";
 import converseLogo from "./assets/logos/converse_logo.svg";
 import fiorucciLogo from "./assets/logos/fiorucci_logo.svg";
 import ardeneLogo from "./assets/logos/ardene_logo.webp";
-import petrossianLogo from "./assets/logos/petrossian_logo.png";
+import petrossianLogo from "./assets/logos/petrossian_logo_white.webp";
 import frameLogo from "./assets/logos/frame_logo.png";
 import johnHardyLogo from "./assets/logos/jh_logo.svg";
 import rawLogo from "./assets/logos/raw_logo.webp";
@@ -256,9 +256,9 @@ export default function Portfolio() {
 
       {/* FOOTER */}
       <footer className="bg-primary py-7 px-6 text-center text-[0.85rem] text-border md:px-10">
-        {footer.prefix} ·{" "}
+        {footer.prefix}{" "}
         <a href={`mailto:${footer.email}`} className="text-accent">{footer.email}</a>
-        {" "}· © {footer.year}
+        {footer.year}
       </footer>
 
     </div>
