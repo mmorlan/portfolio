@@ -1,16 +1,21 @@
 import { Link } from "react-router-dom";
+import type { Project } from "../data/content";
 
 import converseHero from "../assets/images/converse_hero.avif";
 import fiorucciHero from "../assets/images/fiorucci_hero.webp";
 import petrossianHero from "../assets/images/petrossian_hero.jpg";
 
-const heroes = {
+const heroes: Record<string, string> = {
   converse: converseHero,
   fiorucci: fiorucciHero,
   petrossian: petrossianHero,
 };
 
-export default function CaseStudy({ project }) {
+interface CaseStudyProps {
+  project: Project;
+}
+
+export default function CaseStudy({ project }: CaseStudyProps) {
   const { slug, url, title, bg, caseStudy } = project;
   const hero = heroes[slug];
 

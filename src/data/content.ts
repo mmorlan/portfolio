@@ -1,7 +1,61 @@
-export const siteContent = {
+export interface Section {
+  heading: string;
+  body: string | string[];
+}
+
+export interface CaseStudyData {
+  tag: string;
+  subtitle: string;
+  overview: string;
+  roles: string[];
+  stack: string[];
+  sections: Section[];
+}
+
+export interface Project {
+  slug: string;
+  url: string;
+  tag: string;
+  title: string;
+  desc: string;
+  bg: string;
+  color: string;
+  caseStudy: CaseStudyData;
+}
+
+interface HeroHeading {
+  before: string;
+  br1: boolean;
+  mid: string;
+  br2: boolean;
+  after: string;
+  em: string;
+  end: string;
+}
+
+interface SiteContent {
+  header: {
+    siteName: string;
+    authorName: string;
+    linkedin: string;
+    resume: string;
+  };
+  hero: {
+    badge: string;
+    heading: HeroHeading;
+    bio: string;
+    ctaWork: string;
+    ctaContact: string;
+  };
+  brands: { label: string };
+  work: { heading: string; subheading: string };
+  footer: { prefix: string; email: string; year: string };
+}
+
+export const siteContent: SiteContent = {
   header: {
     siteName: "Matt's All Folks!",
-    authorName: "Matthew R. Morlan",
+    authorName: "Matt Morlan",
     linkedin: "https://www.linkedin.com/in/matthew-morlan/",
     resume: "/MMorlan Dev Resume 20260309.pdf",
   },
@@ -16,7 +70,7 @@ export const siteContent = {
       em: "proud",
       end: " of.",
     },
-    bio: "Hi I'm Matt! I'm a front-end developer who thinks like a PM and is a sucker for a good pun. My day-to-day is React, TypeScript, and modern CSS building interfaces that are fast, scalable, and maintainable. But I've spent enough time leading discovery sessions, writing requirements, and presenting to stakeholders to understand that good code is only half the job. I care about what gets built just as much as how and who I build it for.",
+    bio: "Hi I'm Matt! I'm a front-end developer who thinks like a PM and is a sucker for a good pun. My day-to-day is the most powerful AI tools, React, TypeScript, and modern CSS building interfaces that are fast, scalable, and maintainable. But I've spent enough time leading discovery sessions, writing requirements, and presenting to stakeholders to understand that good code is only half the job. I care about what gets built just as much as how and who I build it for.",
     ctaWork: "See my work",
     ctaContact: "Get in touch",
   },
@@ -25,7 +79,7 @@ export const siteContent = {
   footer: { prefix: "Made by Matt · Built with Claude Code ·", email: "mattrmorlan@gmail.com", year: " © 2026" },
 };
 
-export const projects = [
+export const projects: Project[] = [
   {
     slug: "converse",
     url: "https://www.converse.com",

@@ -4,6 +4,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide-core.min.css";
 
 import { siteContent, projects } from "./data/content";
+import type { Project } from "./data/content";
 import CaseStudy from "./components/CaseStudy";
 import burgerIcon from "./assets/icons/burger-menu.svg";
 
@@ -22,7 +23,7 @@ import johnHardyLogo from "./assets/logos/jh_logo.svg";
 import rawLogo from "./assets/logos/raw_logo.webp";
 import allureLogo from "./assets/logos/allure_logo.png";
 
-const thumbs = {
+const thumbs: Record<string, { thumb: string; hover: string }> = {
   converse: { thumb: converseThumb, hover: converseHover },
   fiorucci: { thumb: fiorucciThumb, hover: fiorucciHover },
   petrossian: { thumb: petrossianThumb, hover: petrossianHover },
@@ -39,7 +40,11 @@ const brands = [
   { name: "Allure Bridals", logo: allureLogo, href: "https://www.allurebridals.com" },
 ];
 
-function Card({ project }) {
+interface CardProps {
+  project: Project;
+}
+
+function Card({ project }: CardProps) {
   const images = thumbs[project.slug];
   return (
     <div className="group cursor-pointer overflow-hidden rounded-xl border border-border bg-white flex flex-col transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(31,59,42,0.10)]">
@@ -68,7 +73,13 @@ function Card({ project }) {
   );
 }
 
-function BrandLogo({ name, logo, href }) {
+interface BrandLogoProps {
+  name: string;
+  logo: string;
+  href: string;
+}
+
+function BrandLogo({ name, logo, href }: BrandLogoProps) {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" className="group/brand flex cursor-pointer items-center justify-center font-serif text-xl italic text-primary transition-opacity duration-200 select-none hover:opacity-75">
       <img
@@ -186,14 +197,14 @@ function CaseStudyPage() {
 export default function Portfolio() {
   const { header, footer } = siteContent;
   const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!menuOpen) return;
-    function handleClick(e) {
-      if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false);
+    function handleClick(e: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) setMenuOpen(false);
     }
-    function handleKeyDown(e) {
+    function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") setMenuOpen(false);
     }
     document.addEventListener("mousedown", handleClick);
