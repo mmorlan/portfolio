@@ -4,11 +4,13 @@ import type { Project } from "../data/content";
 import converseHero from "../assets/images/converse_hero.avif";
 import fiorucciHero from "../assets/images/fiorucci_hero.webp";
 import petrossianHero from "../assets/images/petrossian_hero.jpg";
+import pairanoiaHero from "../assets/images/pairanoia_hero.png";
 
 const heroes: Record<string, string> = {
   converse: converseHero,
   fiorucci: fiorucciHero,
   petrossian: petrossianHero,
+  pairanoia: pairanoiaHero,
 };
 
 interface CaseStudyProps {
@@ -58,9 +60,14 @@ export default function CaseStudy({ project }: CaseStudyProps) {
       {/* OVERVIEW */}
       <section className="mb-14">
         <h2 className="mb-4 font-serif text-[1.4rem] font-normal text-primary">Overview</h2>
-        <p className="text-[0.95rem] leading-[1.75] text-muted">
-          {caseStudy.overview}
-        </p>
+        {caseStudy.overview.split("\n\n").map((paragraph, i, arr) => (
+          <p
+            key={i}
+            className={`text-[0.95rem] leading-[1.75] text-muted${i < arr.length - 1 ? " mb-4" : ""}`}
+          >
+            {paragraph}
+          </p>
+        ))}
       </section>
 
       {/* ROLE & STACK */}
@@ -89,28 +96,83 @@ export default function CaseStudy({ project }: CaseStudyProps) {
 
       <hr className="mb-14 border-t border-border" />
 
+      {/* MOTIVATION */}
+      {caseStudy.motivation && (
+        <section className="mb-14">
+          <h2 className="mb-4 font-serif text-[1.4rem] font-normal text-primary">
+            {caseStudy.motivation.heading}
+          </h2>
+          {caseStudy.motivation.body.split("\n\n").map((paragraph, i, arr) => (
+            <p
+              key={i}
+              className={`text-[0.95rem] leading-[1.75] text-muted${i < arr.length - 1 ? " mb-4" : ""}`}
+            >
+              {paragraph}
+            </p>
+          ))}
+          {caseStudy.motivation.citations && caseStudy.motivation.citations.length > 0 && (
+            <ul className="mt-6 space-y-1.5">
+              {caseStudy.motivation.citations.map((c) => (
+                <li key={c.url} className="text-[0.8rem] text-muted/70">
+                  <a href={c.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-accent transition-colors">
+                    {c.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+      )}
+
+      {/* CHALLENGE */}
+      {caseStudy.challenge && (
+        <section className="mb-14">
+          <h2 className="mb-4 font-serif text-[1.4rem] font-normal text-primary">The Challenge</h2>
+          {caseStudy.challenge.split("\n\n").map((paragraph, i, arr) => (
+            <p
+              key={i}
+              className={`text-[0.95rem] leading-[1.75] text-muted${i < arr.length - 1 ? " mb-4" : ""}`}
+            >
+              {paragraph}
+            </p>
+          ))}
+        </section>
+      )}
+
       {/* CONTENT SECTIONS */}
       {caseStudy.sections.map((section) => (
         <section key={section.heading} className="mb-14">
           <h2 className="mb-4 font-serif text-[1.4rem] font-normal text-primary">
             {section.heading}
           </h2>
-          {Array.isArray(section.body) ? (
-            section.body.map((paragraph, i) => (
-              <p
-                key={i}
-                className={`text-[0.95rem] leading-[1.75] text-muted${i < section.body.length - 1 ? " mb-4" : ""}`}
-              >
-                {paragraph}
-              </p>
-            ))
-          ) : (
-            <p className="text-[0.95rem] leading-[1.75] text-muted">
-              {section.body}
+          {(Array.isArray(section.body)
+            ? section.body
+            : section.body.split("\n\n")
+          ).map((paragraph, i, arr) => (
+            <p
+              key={i}
+              className={`text-[0.95rem] leading-[1.75] text-muted${i < arr.length - 1 ? " mb-4" : ""}`}
+            >
+              {paragraph}
             </p>
-          )}
+          ))}
         </section>
       ))}
+
+      {/* ROADMAP */}
+      {caseStudy.roadmap && caseStudy.roadmap.length > 0 && (
+        <section className="mb-14">
+          <h2 className="mb-4 font-serif text-[1.4rem] font-normal text-primary">What's Next</h2>
+          <ul className="space-y-2">
+            {caseStudy.roadmap.map((item) => (
+              <li key={item} className="flex items-start gap-2 text-[0.95rem] leading-[1.75] text-muted">
+                <span className="mt-[0.45em] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
     </article>
     </>

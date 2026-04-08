@@ -22,11 +22,14 @@ import frameLogo from "./assets/logos/frame_logo.png";
 import johnHardyLogo from "./assets/logos/jh_logo.svg";
 import rawLogo from "./assets/logos/raw_logo.webp";
 import allureLogo from "./assets/logos/allure_logo.png";
+import pairanoiaThumb from "./assets/thumbnails/pairanoia.gif";
+import pairanoiaHover from "./assets/thumbnails/pairanoia_hover.png";
 
 const thumbs: Record<string, { thumb: string; hover: string }> = {
   converse: { thumb: converseThumb, hover: converseHover },
   fiorucci: { thumb: fiorucciThumb, hover: fiorucciHover },
   petrossian: { thumb: petrossianThumb, hover: petrossianHover },
+  pairanoia: { thumb: pairanoiaThumb, hover: pairanoiaHover },
 };
 
 const brands = [
