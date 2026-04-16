@@ -74,7 +74,7 @@ export const siteContent: SiteContent = {
     resume: "/MMorlan Dev Resume 20260309.pdf",
   },
   hero: {
-    badge: "Front-End Developer & Product Tinkerer | Chicago, IL",
+    badge: "Front-End Developer | Urban Planner | Product-Minded | Chicago, IL",
     heading: {
       before: "I write clean code, ",
       br1: true,
@@ -84,7 +84,7 @@ export const siteContent: SiteContent = {
       em: "proud",
       end: " of.",
     },
-    bio: "Hi I'm Matt! I'm a front-end developer who thinks like a PM and is a sucker for a good pun. My day-to-day is the most powerful AI tools, React, TypeScript, and modern CSS building interfaces that are fast, scalable, and maintainable. But I've spent enough time leading discovery sessions, writing requirements, and presenting to stakeholders to understand that good code is only half the job. I care about what gets built just as much as how and who I build it for.",
+    bio: "Hi I'm Matt! I'm a front-end developer who thinks like a PM and has a master's degree in urban planning, which means I'm just as comfortable talking about how cities operate as I am about how components render. My day-to-day is React, TypeScript, and modern CSS, with Claude Code and Cursor AI in the mix to move faster and build smarter. But I've spent enough time leading discovery sessions, writing requirements, and presenting to stakeholders to know that good code is only half the job. I care about what gets built just as much as how and who I build it for.",
     ctaWork: "See my work",
     ctaContact: "Get in touch",
   },
