@@ -74,7 +74,7 @@ export const siteContent: SiteContent = {
     resume: "/MMorlan Resume 20260416.pdf",
   },
   hero: {
-    badge: "Front-End Developer | Urban Planner | Product-Minded | Chicago, IL",
+    badge: "Front-End Engineer | Urban Planner | Product-Minded | Chicago, IL",
     heading: {
       before: "I write clean code, ",
       br1: true,
