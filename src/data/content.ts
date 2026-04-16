@@ -97,20 +97,18 @@ export const projects: Project[] = [
     {
     slug: "pairanoia",
     url: "https://pairanoia.vercel.app",
-    tag: "Next.js | AWS | Full-Stack",
+    tag: "Next.js | AWS | Full-Stack | Product",
     title: "Pairanoia",
     desc: "A Competitive Browser-Based Memory Card Game",
     bg: "#C3DCE8",
     color: "#1B3D4F",
     caseStudy: {
-      tag: "Next.js | AWS | Full-Stack",
+      tag: "Next.js | AWS | Full-Stack | Product",
       subtitle: "A Competitive Browser-Based Memory Card Game",
-      overview: `Pairanoia is a competitive browser-based memory card game where players flip tiles to find matching pairs as fast as possible. It's designed as a direct counter to doom scrolling — a productive, skill-building alternative to the passive, algorithmically-driven content loops that dominate modern screen time.
+      overview: `Pairanoia is a competitive browser-based memory card game where players flip tiles to find matching pairs as fast as possible. It's designed as a deliberate alternative to doom scrolling — a productive, skill-building substitute for the passive, algorithmically-driven content loops that dominate modern screen time.
 
-The project started simple: a card-matching game with a leaderboard. It became something more deliberate once the research behind it clicked into place. Brain training games have demonstrated statistically significant improvements in working memory, processing speed, and cognitive function across multiple peer-reviewed trials. The goal was to build something that's genuinely fun to play and genuinely good for your brain, without asking you to install an app, pay a subscription, or create an account just to start.
-
-On the technical side, Pairanoia is a full-stack production application built from scratch: Next.js App Router, TypeScript, AWS Cognito authentication, DynamoDB persistence, a Lambda-triggered email system, and a GitHub Actions CI/CD pipeline.`,
-      roles: ["Designer & Full-Stack Developer"],
+I owned this product end to end. From the initial research and problem framing through technical architecture, UX decisions, phased roadmap, and deployment — I acted as PM, designer, and engineer, making explicit tradeoffs between scope, feasibility, and user experience at every stage.`,
+      roles: ["Product Lead & Engineer"],
       stack: [
         "Next.js (App Router)",
         "TypeScript",
@@ -118,87 +116,85 @@ On the technical side, Pairanoia is a full-stack production application built fr
         "AWS Cognito",
         "AWS Lambda",
         "AWS Amplify v6",
-        "Lucide React",
         "Vercel",
         "GitHub Actions",
       ],
-      motivation: {
-        heading: "A Problem Worth Solving",
-        body: `"Brain rot" was Oxford's Word of the Year in 2024. It refers to the cognitive dullness that accumulates from excessive exposure to low-quality online content, a mental fog that sets in after an hour of short-form video or an endless "doomscrolling". Research published in Brain Sciences describes it as a genuine public health concern, with overuse of social platforms degrading attentional capacity, disrupting memory formation, and fragmenting focus in ways that compound over time.
-
-Social platforms are in fact engineered around dopamine-scrolling. Each scroll or swipe triggers a small dopamine release, and variable reward schedules create the same compulsion loop that makes slot machines hard to walk away from. A 2025 paper in Perspectives in Public Health estimates that over a billion people spent an average of three hours daily scrolling through social media feeds in 2020, with some countries reporting self-reported averages above four hours. Most teenagers now describe themselves as "almost constantly online."
-
-The antidote isn't abstinence, it's substitution. A 2025 meta-analysis across 16 randomized controlled trials found that brain training games produced statistically significant improvements in cognitive function, working memory, and processing speed in healthy individuals across all age groups. The mechanism is neuroplasticity: engaging in memory challenges reinforces synaptic connections, promotes neurogenesis, and increases the production of BDNF, a protein that supports neuronal growth and the consolidation of new information.
-
-Pairanoia was built in that gap. It's fast enough to scratch the same itch as a social feed scroll, competitive enough to keep you coming back, and cognitively demanding enough to actually do something for your brain in the process.`,
-        citations: [
-          {
-            label: "Brain Rot in the Digital Era",
-            url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11939997/",
-          },
-          {
-            label: "Dopamine-Scrolling: A Modern Public Health Challenge",
-            url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12322333/",
-          },
-          {
-            label: "Efficacy of Brain Training Games: A Meta-Analysis",
-            url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12244833/",
-          },
-        ],
-      },
-      challenge: `The hardest part wasn't the game logic, it was defining what "success" actually meant. A memory game is easy to build at a basic level. Building one that holds up technically, scales to a leaderboard, handles anonymous and authenticated players gracefully, persists state across full page refreshes, and ships with a CI/CD pipeline is a different scope entirely.
-
-Architecturally, the project required migrating mid-build from a Vite prototype to Next.js App Router, resolving some hydration mismatches between server and client rendering, restructuring routing, and converting a JavaScript codebase to strict TypeScript in one pass. On the gameplay side, the scoring system had to feel fair across a 4×4 grid and a 12×12 grid without a fixed formula that would break at the edges. Authentication also had to work for anonymous players who shouldn't be punished for skipping signup, but be seamlessly available when they changed their mind after a good run.`,
       sections: [
         {
-          heading: "Two Modes, One Engine",
-          body: `Freeplay is the open sandbox. Players choose any grid from 4×4 to 12×12 (with mobile-adjusted constraints), pick their grid dimensions from a custom dropdown, see a live preview of the board before starting, and play at their own pace. A stopwatch starts on the first card flip and stops on the last match. Score and board state persist through full page refreshes via localStorage. Close the tab mid-game and the board is exactly where you left it when you come back.
+          heading: "Product Vision",
+          body: `The core hypothesis: if you give people something fast, competitive, and cognitively rewarding, they'll choose it over passive feed consumption. Brain training games have demonstrated statistically significant improvements in working memory, processing speed, and cognitive function across multiple peer-reviewed trials. The goal was to build something genuinely fun and genuinely good for your brain, without asking you to install an app, pay a subscription, or create an account just to start.
 
-Survival is a structured gauntlet. Nine stages of escalating grid sizes, each with three levels of increasing difficulty. A countdown timer, calculated as 7.5 seconds per pair in the grid, starts on "Start Game" and doesn't pause. Fail to clear the board in time and all cards are revealed. Clear it and you advance. The game tracks your absolute timer deadline in localStorage so a page refresh doesn't break the run. Remaining time is recalculated on mount and the timer resumes automatically if time hasn't expired while the tab was closed.
+"Brain rot" was Oxford's Word of the Year in 2024. Social platforms are engineered around dopamine-scrolling, each swipe triggers a small dopamine release, and variable reward schedules create the same compulsion loop that makes slot machines hard to walk away from. The antidote isn't abstinence, it's substitution. Pairanoia was built in that gap.`,
+        },
+        {
+          heading: "Statement of Work",
+          body: `Before writing a line of code, I defined three core product bets that would determine whether v1 succeeded.
+
+Bet 1 — Anonymous-first onboarding reduces friction and increases play rate.
+Requiring signup before play is a conversion killer for casual games. If users have to create an account before they can try the product, most won't. The design hypothesis was that letting anyone play immediately (with a score-saving prompt after completion) would increase both play rate and eventual account creation.
+
+Bet 2 — A competitive scoring system with meaningful differentiation drives return visits.
+A flat score per match doesn't give skilled players a reason to care. The hypothesis was that a time-decay multiplier tied to total elapsed time would create continuous pressure, differentiate casual from skilled players, and make leaderboard competition feel earned rather than arbitrary.
+
+Bet 3 — A CI/CD pipeline with persistent state makes the product feel production-grade.
+Shipping with GitHub Actions CI/CD, three deployment environments, and full page-refresh state persistence was a deliberate decision to hold the product to a professional standard, both for users and as a technical showcase.`,
+        },
+        {
+          heading: "A Problem Worth Solving",
+          body: `"Brain rot" was Oxford's Word of the Year in 2024. Research published in Brain Sciences describes excessive low-quality content consumption as a genuine public health concern — degrading attentional capacity, disrupting memory formation, and fragmenting focus in ways that compound over time.
+
+A 2025 meta-analysis across 16 randomized controlled trials found that brain training games produced statistically significant improvements in cognitive function, working memory, and processing speed across all age groups. The mechanism is neuroplasticity: engaging in memory challenges reinforces synaptic connections and promotes neurogenesis.
+
+Pairanoia was built in that gap. Fast enough to scratch the same itch as a social feed scroll, competitive enough to keep you coming back, and cognitively demanding enough to actually do something for your brain.`,
+        },
+        {
+          heading: "Product Decisions & Tradeoffs",
+          body: `Anonymous-first onboarding
+Requiring an account before playing would have killed conversion. Instead, any user can play immediately. After completing a game, unauthenticated players see a modal offering to create an account, sign in, or skip. If they choose to create an account, the game result is stored in localStorage as a pendingGame and saved to DynamoDB automatically on first login, removing any penalty for skipping signup the first time.
+
+Scoring system design
+Early playtesting showed a flat score per match didn't create meaningful differentiation between skilled and casual players. The time-decay multiplier tied to total elapsed time, not per-pair time, solved this. It creates continuous pressure to stay fast throughout a run without punishing slow starts disproportionately. The result is that skill actually differentiates scores in a meaningful way.
+
+Survival mode timer calculation
+7.5 seconds per pair was arrived at through playtesting across grid sizes. Too generous and the mode loses tension; too strict and it feels unfair on larger grids. This was a feel problem, not a math problem, and the right answer required iteration, not calculation.`,
+        },
+        {
+          heading: "Two Modes, One Engine",
+          body: `Freeplay is the open sandbox. Players choose any grid from 4×4 to 12×12, see a live preview before starting, and play at their own pace. Score and board state persist through full page refreshes, close the tab mid-game and the board is exactly where you left it.
+
+Survival is a structured gauntlet. Nine stages of escalating grid sizes, each with three levels of increasing difficulty. A countdown timer starts on "Start Game" and doesn't pause. Fail to clear the board in time and all cards are revealed. Clear it and you advance. The absolute timer deadline is persisted to localStorage so a page refresh doesn't break the run.
 
 Both modes share the same core game logic, component architecture, and scoring utilities, but diverge significantly in how they manage state, handle persistence, and communicate progress to the player.`,
         },
         {
-          heading: "A Scoring System With Real Stakes",
-          body: `Scoring is what makes the competitive layer feel meaningful. Every pair is scored individually using a unified formula: 100 × Pairs Multiplier × Time Multiplier, with Survival adding a Level Difficulty Multiplier on top.
-
-The Pairs Multiplier scales with grid size, 8 pairs (a 4×4 grid) is the baseline at 1×, and every pair above that scales proportionally, so a 12×12 grid is worth significantly more than a 4×4. The Time Multiplier rewards speed: pairs matched in under 3 seconds earn a 5× bonus, with the multiplier decaying in tiers down to 1× after 50 seconds. Crucially, the multiplier is based on total elapsed time at the moment of each match, not per-pair time, so it naturally degrades as a game progresses and creates real pressure to stay fast throughout.
-
-In Survival mode, the Level Difficulty Multiplier stacks on top. Clearing the third level in any stage earns a 2× bonus. That same level also introduces curated groups of visually similar icons, making it harder to distinguish pairs by sight alone. The result is that skill actually differentiates scores in a meaningful way across grid sizes, modes, and player types.`,
+          heading: "Technical Architecture",
+          body: [
+            "Frontend: Next.js App Router, TypeScript — migrated mid-build from a Vite prototype",
+            "Auth: AWS Cognito via Amplify v6, configured for SSR; anonymous play supported from day one",
+            "Data: DynamoDB with GSI-backed leaderboard queries; full game record stored per completion",
+            "Email: Lambda CustomMessage trigger sends styled HTML verification emails",
+            "CI/CD: GitHub Actions — lint, typecheck, and build on every PR; deploy to Vercel preview on dev/staging, production on main",
+            "Environments: Development, Staging, Production with separate data",
+          ],
         },
         {
-          heading: "Authentication Without Friction",
-          body: `Requiring an account before playing is a conversion killer. Pairanoia lets anyone play immediately — no signup, no login, no interruption. After completing a game, unauthenticated players see a SaveScoreModal offering to create an account, sign in, or skip entirely.
+          heading: "Product Roadmap",
+          body: `Phase 1 — Foundation (Shipped)
+Freeplay and Survival modes, competitive scoring system, anonymous-first auth, DynamoDB persistence, CI/CD pipeline, mobile-responsive layout.
 
-If they choose to create an account, the game result is stored in localStorage as a pendingGame. On next login, checkAuth() detects the pending record, saves it to DynamoDB automatically, and removes it from localStorage synchronously before the async write to prevent duplicate saves on concurrent auth calls.
+Phase 2 — Instrumentation (In Progress)
+Analytics dashboard tracking engagement, drop-off by stage and grid size, scoring distribution, and feature usage. Goal: make data-informed decisions about Phase 3 priorities rather than building on instinct.
 
-Authentication itself runs through AWS Cognito via Amplify v6, configured for Next.js App Router's SSR environment. Signup includes a password strength bar, confirm password field, visibility toggle, and inline error messages. Verification is code-based: after signup, users enter a 6-digit OTP inline on the registration page. The verification email is generated by a Lambda CustomMessage trigger and delivered as styled HTML instead of the default Cognito template.`,
+Phase 3 — Growth & Retention (Medium-term)
+Freeplay leaderboard segmented by grid size, anonymous game logging for aggregate analytics, profile stats filterable by grid size, profile picture uploader, Vitest unit testing suite.
+
+Phase 4 — Expansion (Longer horizon)
+Roguelike mode (Slay the Spire-inspired battle system), mobile magnify feature, iOS native app, social features informed by retention data.`,
         },
         {
-          heading: "Data That Goes Somewhere",
-          body: `Every completed game is saved to DynamoDB with a full record: mode, score, grid dimensions, elapsed time, device type (desktop or mobile, detected via user agent), average milliseconds per pair, and survival-specific fields including stage reached, clutch pairs (matches made with 3 seconds or less remaining), and whether the player completed the full run.
-
-A GSI on a leaderboardkey field enables efficient top-10 queries across both modes, with device segmentation (all, desktop, mobile) applied at query time. The leaderboard page fetches both freeplay and survival top-10 arrays in a single request, mode switching is instant with no second call.
-
-The profile page surfaces this data in a three-tab layout: Global stats (total games, lifetime score, favorite mode and grid, average pair time), Freeplay stats (best score, best time, favorite grid), and Survival stats (highest stage, best score, clutch pairs, clutch rate). A recent games table filters per the active tab. Skeleton loading states replace content during the DynamoDB fetch to prevent layout shift.`,
+          heading: "Outcome",
+          body: "A production-grade full-stack application owned end to end, from product hypothesis through phased delivery. Anonymous-first onboarding, a competitive scoring system with real differentiation, and a CI/CD pipeline that holds the product to a professional standard. Active development continues, guided by the analytics instrumentation currently in progress.",
         },
-        {
-          heading: "Mobile, Responsiveness, and Edge Cases",
-          body: `The game is fully playable on mobile with constraints that account for screen size. Freeplay caps columns at 8 on mobile; Survival uses a separate MOBILE_GRIDS table that adjusts row counts to preserve the same pair totals as the desktop stages. The CSS grid layout uses a --cols CSS variable set from JavaScript, with repeat(var(--cols), minmax(0, 1fr)) ensuring tiles never overflow their container.
-
-The sticky game bar remains anchored below the fixed header during grid scroll. On mobile, the timer and scoring formula display inline in a compact layout. Survival stats (stage, level, lives) move to a non-sticky bottom bar that appears below the sticky bar on scroll. Grid size controls hide once a game is in progress.
-
-Auth state in the header uses skeleton placeholders during Cognito resolution to prevent a flash of the wrong state (logged-out nav appearing briefly before the logged-in state renders). On mobile, unauthenticated users see a single user icon that opens a Sign In / Register dropdown rather than two separate links.`,
-        },
-      ],
-      roadmap: [
-        "Freeplay leaderboard segmented by grid size",
-        "Profile picture uploader with content screening",
-        "Freeplay stats filterable by grid size",
-        "Vitest unit testing suite",
-        "Anonymous game logging for analytics",
-        "Roguelike mode (Slay the Spire-inspired battle system)",
-        "Magnify feature for mobile (press-and-hold to zoom tiles)",
       ],
     },
   },
