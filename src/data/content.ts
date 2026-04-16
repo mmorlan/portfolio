@@ -71,7 +71,7 @@ export const siteContent: SiteContent = {
     siteName: "Matt's All Folks!",
     authorName: "Matt Morlan",
     linkedin: "https://www.linkedin.com/in/matthew-morlan/",
-    resume: "/MMorlan Dev Resume 20260309.pdf",
+    resume: "/MMorlan Resume 20260416.pdf",
   },
   hero: {
     badge: "Front-End Developer | Urban Planner | Product-Minded | Chicago, IL",
